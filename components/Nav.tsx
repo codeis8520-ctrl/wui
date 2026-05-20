@@ -6,6 +6,7 @@ const links = [
   { href: '#problems', label: '문제' },
   { href: '#features', label: '솔루션' },
   { href: '#agent', label: 'AI 비서' },
+  { href: '#evolution', label: 'AI 진화' },
   { href: '#process', label: '도입 절차' },
   { href: '#faq', label: 'FAQ' },
 ];

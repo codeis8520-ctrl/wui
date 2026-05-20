@@ -3,6 +3,7 @@ import Hero from '@/components/Hero';
 import Problems from '@/components/Problems';
 import Features from '@/components/Features';
 import AgentChat from '@/components/AgentChat';
+import AgentEvolution from '@/components/AgentEvolution';
 import Impact from '@/components/Impact';
 import Screens from '@/components/Screens';
 import Process from '@/components/Process';
@@ -25,6 +26,7 @@ export default function Page() {
       <Problems />
       <Features />
       <AgentChat />
+      <AgentEvolution />
       <Impact />
       <Screens />
       <Process />
