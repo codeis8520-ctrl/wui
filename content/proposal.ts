@@ -294,11 +294,13 @@ export const developer = {
   company: '제이엘컴퍼니',
   ceoLabel: '대표',
   ceoName: '이종림',
+  phone: '010-9958-8520',
 };
 
 export const footer = {
   company: '제이엘컴퍼니',
   ceoLabel: '대표',
   ceoName: '이종림',
+  phone: '010-9958-8520',
   copyrightYear: 2026,
 };

@@ -1,5 +1,5 @@
 import { finalCta, developer } from '@/content/proposal';
-import { Building2 } from 'lucide-react';
+import { Building2, Phone } from 'lucide-react';
 
 export default function FinalCTA() {
   return (
@@ -29,6 +29,23 @@ export default function FinalCTA() {
               <p className="text-2xl font-black text-ink-900">{developer.ceoName}</p>
             </div>
           </div>
+          <a
+            href={`tel:${developer.phone.replace(/-/g, '')}`}
+            className="mt-6 flex items-center justify-between gap-3 p-4 rounded-xl bg-brand-50 border border-brand-100 hover:bg-brand-100 transition group"
+          >
+            <span className="flex items-center gap-3">
+              <span className="w-10 h-10 rounded-lg bg-brand-700 text-white grid place-items-center group-hover:scale-105 transition">
+                <Phone className="w-5 h-5" />
+              </span>
+              <span>
+                <span className="block text-xs text-ink-500 font-semibold">연락처</span>
+                <span className="block text-xl font-black text-ink-900 tabular-nums">
+                  {developer.phone}
+                </span>
+              </span>
+            </span>
+            <span className="text-xs text-brand-700 font-bold hidden sm:inline">탭하여 전화 →</span>
+          </a>
         </div>
       </div>
     </section>
