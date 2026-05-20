@@ -5,6 +5,8 @@ import {
   CalendarClock,
   BarChart3,
   Sparkles,
+  GraduationCap,
+  FileSpreadsheet,
   type LucideIcon,
 } from 'lucide-react';
 import { SectionHeader } from './Problems';
@@ -15,6 +17,8 @@ const ICONS: Record<string, LucideIcon> = {
   CalendarClock,
   BarChart3,
   Sparkles,
+  GraduationCap,
+  FileSpreadsheet,
 };
 
 export default function Features() {
