@@ -1,134 +1,137 @@
+'use client';
+import { useState } from 'react';
+import { ClipboardCheck, Tag, LineChart, GraduationCap, Play, type LucideIcon } from 'lucide-react';
 import { screens } from '@/content/proposal';
 import { SectionHeader } from './Problems';
-import { ClipboardCheck, Tag, LineChart, Bot } from 'lucide-react';
+import InteractiveDemo from './demos/InteractiveDemo';
+import ChecklistDemo from './demos/ChecklistDemo';
+import HallBannerDemo from './demos/HallBannerDemo';
+import DashboardDemo from './demos/DashboardDemo';
+import OnboardingDemo from './demos/OnboardingDemo';
 
-const PREVIEWS = [
-  { kind: 'checklist' as const, Icon: ClipboardCheck },
-  { kind: 'banner' as const, Icon: Tag },
-  { kind: 'dashboard' as const, Icon: LineChart },
-  { kind: 'chat' as const, Icon: Bot },
+/**
+ * 화면 미리보기 섹션. 각 카드는 클릭 시 인터랙티브 데모 모달을 연다.
+ *
+ * 4개 데모는 모두 실제 구현 예정 기능과 1:1로 매핑되어 있다.
+ * 카메라/푸시 같은 디바이스 기능만 모의 처리되며, 데이터·버튼·상태 전이는
+ * 실제 production 코드에서 그대로 재현 가능한 흐름이다.
+ */
+
+type Slot = 'checklist' | 'hall' | 'dashboard' | 'onboarding';
+
+const CARDS: Array<{
+  slot: Slot;
+  Icon: LucideIcon;
+  tint: string;
+  iconBg: string;
+  iconColor: string;
+  subtitle: string;
+}> = [
+  {
+    slot: 'checklist',
+    Icon: ClipboardCheck,
+    tint: 'from-emerald-50 to-white',
+    iconBg: 'bg-emerald-100',
+    iconColor: 'text-emerald-700',
+    subtitle: '카메라로 찍어야만 완료 체크가 활성화됩니다',
+  },
+  {
+    slot: 'hall',
+    Icon: Tag,
+    tint: 'from-amber-50 to-white',
+    iconBg: 'bg-amber-100',
+    iconColor: 'text-amber-700',
+    subtitle: '주방이 등록한 임박 재고가 푸시와 함께 자동 노출',
+  },
+  {
+    slot: 'dashboard',
+    Icon: LineChart,
+    tint: 'from-indigo-50 to-white',
+    iconBg: 'bg-indigo-100',
+    iconColor: 'text-indigo-700',
+    subtitle: '월별 매출 / 원가율 / 메뉴 비중 자동 시각화',
+  },
+  {
+    slot: 'onboarding',
+    Icon: GraduationCap,
+    tint: 'from-rose-50 to-white',
+    iconBg: 'bg-rose-100',
+    iconColor: 'text-rose-700',
+    subtitle: '신규 직원이 챕터 학습 + 퀴즈로 SOP를 익힙니다',
+  },
 ];
 
+const TITLES: Record<Slot, string> = {
+  checklist: '사진 인증 체크리스트',
+  hall: '홀 직원 추천 배너',
+  dashboard: '매출 대시보드',
+  onboarding: '신규 직원 온보딩',
+};
+
+const DETAIL_SUB: Record<Slot, string> = {
+  checklist: '직원이 사진을 찍어야만 완료 체크가 활성화되고, 사장님 폰에 실시간 타임라인으로 들어옵니다.',
+  hall: '주방이 임박 식자재를 등록하면 홀 앱 상단에 추천 배너가 뜨고, 판매 성공 시 인센티브가 적립됩니다.',
+  dashboard: '마감 때 입력된 매출/매입을 자동으로 시각화. AI가 원가율 변화의 원인까지 함께 알려줍니다.',
+  onboarding: '입사 첫날 신규 직원이 매장 매뉴얼을 챕터별로 학습. 퀴즈 통과해야 다음 챕터가 열립니다.',
+};
+
+const TITLE_MAP_BY_SLOT: Record<Slot, string> = TITLES;
+
 export default function Screens() {
+  const [openSlot, setOpenSlot] = useState<Slot | null>(null);
+
   return (
     <section id="screens" className="py-20 md:py-28 bg-ink-50">
       <div className="max-w-6xl mx-auto px-5">
         <SectionHeader title={screens.title} sub={screens.sub} />
+
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
           {screens.items.map((it, i) => {
-            const { kind, Icon } = PREVIEWS[i] ?? PREVIEWS[0];
+            const card = CARDS[i] ?? CARDS[0];
+            const Icon = card.Icon;
             return (
-              <div
+              <button
                 key={it.title}
-                className="bg-white border border-ink-100 rounded-2xl p-5 hover:shadow-md hover:-translate-y-0.5 transition"
+                onClick={() => setOpenSlot(card.slot)}
+                className="group text-left bg-white border border-ink-100 rounded-2xl p-5 hover:shadow-lg hover:-translate-y-1 hover:border-brand-100 transition-all"
               >
-                <div className="aspect-[4/5] rounded-xl bg-ink-900 p-3 mb-4 overflow-hidden">
-                  <ScreenPreview kind={kind} />
+                <div
+                  className={`aspect-[4/5] rounded-xl bg-gradient-to-br ${card.tint} p-3 mb-4 overflow-hidden relative grid place-items-center`}
+                >
+                  <span className={`absolute inset-0 ${card.iconBg} opacity-20`} />
+                  <span
+                    className={`relative w-14 h-14 rounded-2xl bg-white shadow-md grid place-items-center ${card.iconColor}`}
+                  >
+                    <Icon className="w-7 h-7" />
+                  </span>
+                  <span className="absolute bottom-3 right-3 inline-flex items-center gap-1 bg-ink-900 text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow-md group-hover:bg-brand-700 transition">
+                    <Play className="w-3 h-3 fill-white" />
+                    체험하기
+                  </span>
                 </div>
-                <div className="flex items-start gap-2">
-                  <Icon className="w-4 h-4 text-brand-700 mt-1" />
-                  <div>
-                    <h3 className="font-bold">{it.title}</h3>
-                    <p className="text-sm text-ink-500 mt-1">{it.desc}</p>
-                  </div>
-                </div>
-              </div>
+                <h3 className="font-bold text-ink-900">{it.title}</h3>
+                <p className="text-sm text-ink-500 mt-1 leading-relaxed">{card.subtitle}</p>
+              </button>
             );
           })}
         </div>
-      </div>
-    </section>
-  );
-}
 
-function ScreenPreview({ kind }: { kind: 'checklist' | 'banner' | 'dashboard' | 'chat' }) {
-  if (kind === 'checklist') {
-    return (
-      <div className="bg-white rounded-lg h-full p-3 space-y-1.5 text-[10px]">
-        <p className="font-bold text-ink-900">오늘 체크리스트</p>
-        {[
-          { t: '홀 바닥 청소', d: true },
-          { t: '냉장고 온도 확인', d: true },
-          { t: '주방 후드 청소', d: false },
-          { t: '컵 위생 점검', d: false },
-          { t: '마감 정산', d: false },
-        ].map((it, i) => (
-          <div
-            key={i}
-            className={`flex items-center gap-2 p-1.5 rounded ${it.d ? 'bg-brand-50' : 'bg-ink-50'}`}
-          >
-            <span
-              className={`w-3 h-3 rounded grid place-items-center text-[8px] ${
-                it.d ? 'bg-brand-600 text-white' : 'border border-ink-300 bg-white'
-              }`}
-            >
-              {it.d ? '✓' : ''}
-            </span>
-            <span className={`flex-1 ${it.d ? 'line-through text-ink-500' : ''}`}>{it.t}</span>
-            <span className="text-ink-500">📷</span>
-          </div>
-        ))}
+        <p className="mt-8 text-center text-xs text-ink-500">
+          ※ 모든 데모는 실제 구현 예정 화면과 동일한 흐름으로 동작합니다. 데이터·버튼·상태 전이는 라이브이며, 카메라/푸시 알림만 모의 처리됩니다.
+        </p>
       </div>
-    );
-  }
-  if (kind === 'banner') {
-    return (
-      <div className="bg-white rounded-lg h-full p-3 text-[10px]">
-        <div className="p-2.5 rounded-md bg-gradient-to-br from-amber-100 to-amber-50 border border-amber-200">
-          <p className="font-bold text-amber-700 text-[9px]">임박 식자재 추천 ✨</p>
-          <p className="font-bold text-ink-900 mt-1 text-[12px]">닭볶음탕</p>
-          <p className="text-ink-700 mt-0.5">닭다리살 200g · D-1</p>
-          <div className="flex justify-between mt-2 items-center">
-            <span className="text-amber-700">+100p / 판매</span>
-            <span className="bg-brand-700 text-white px-1.5 py-0.5 rounded">판매</span>
-          </div>
-        </div>
-        <p className="font-bold mt-3 text-ink-700">오늘의 주문</p>
-        {['테이블 3 · 닭볶음탕', '테이블 7 · 닭볶음탕', '테이블 2 · 김치찌개'].map((t, i) => (
-          <div key={i} className="p-1.5 rounded bg-ink-50 mt-1">
-            {t}
-          </div>
-        ))}
-      </div>
-    );
-  }
-  if (kind === 'dashboard') {
-    return (
-      <div className="bg-white rounded-lg h-full p-3 text-[10px] flex flex-col">
-        <p className="font-bold text-ink-900">이번 달 매출</p>
-        <p className="font-black text-brand-700 text-[18px] mt-0.5 tabular-nums">₩42,180,000</p>
-        <p className="text-ink-500 text-[9px]">원가율 32.4% · 전월 +2.1%p</p>
-        <div className="flex-1 mt-3 flex items-end gap-1">
-          {[40, 65, 50, 80, 60, 90, 75, 95, 70, 85].map((h, i) => (
-            <div
-              key={i}
-              style={{ height: `${h}%` }}
-              className="flex-1 bg-gradient-to-t from-brand-600 to-brand-400 rounded-t"
-            />
-          ))}
-        </div>
-        <div className="grid grid-cols-3 gap-1 mt-2 text-[8px] text-ink-500">
-          <span>1주</span>
-          <span className="text-center">2주</span>
-          <span className="text-right">4주</span>
-        </div>
-      </div>
-    );
-  }
-  return (
-    <div className="bg-white rounded-lg h-full p-3 text-[10px] space-y-2">
-      <div className="flex justify-end">
-        <div className="bg-brand-700 text-white px-2 py-1 rounded">원가율 어때?</div>
-      </div>
-      <div className="flex justify-start">
-        <div className="bg-ink-100 px-2 py-1 rounded">32.4%, 전월 +2.1%p입니다.</div>
-      </div>
-      <div className="flex justify-end">
-        <div className="bg-brand-700 text-white px-2 py-1 rounded">왜 올랐어?</div>
-      </div>
-      <div className="flex justify-start">
-        <div className="bg-ink-100 px-2 py-1 rounded">임박 식자재 폐기율 ↑. 임박 등록은 +12건.</div>
-      </div>
-    </div>
+
+      <InteractiveDemo
+        open={openSlot !== null}
+        onClose={() => setOpenSlot(null)}
+        title={openSlot ? TITLE_MAP_BY_SLOT[openSlot] : ''}
+        subtitle={openSlot ? DETAIL_SUB[openSlot] : ''}
+      >
+        {openSlot === 'checklist' && <ChecklistDemo key="checklist" />}
+        {openSlot === 'hall' && <HallBannerDemo key="hall" />}
+        {openSlot === 'dashboard' && <DashboardDemo key="dashboard" />}
+        {openSlot === 'onboarding' && <OnboardingDemo key="onboarding" />}
+      </InteractiveDemo>
+    </section>
   );
 }
