@@ -43,7 +43,7 @@ export const hero = {
   personaLine: client.personaHook,
   primaryCta: { label: '제안 내용 보기', target: '#features' },
   secondaryCta: { label: '데모 화면 보기', target: '#screens' },
-  badges: ['매장별 데이터 격리', 'POS 연동 불필요', '3주 안에 자리잡음'],
+  badges: ['매장별 데이터 격리', 'POS 연동 불필요', '파일럿 테스트 포함'],
 };
 
 export const problems = {
@@ -148,13 +148,29 @@ export const screens = {
 };
 
 export const process = {
-  title: '3주면 자리 잡습니다',
-  sub: `${client.shortName} 매장 규모 기준 권장 일정`,
+  title: '단계별로 안전하게 — 약 3개월',
+  sub: `${client.shortName} 매장에 맞춰 새로 개발하는 프로젝트입니다. 설계 → 개발 → 파일럿 → 본격 가동 4단계로 진행합니다.`,
   steps: [
-    { range: 'Day 1–3', title: '매장 정보·메뉴·SOP 등록', body: '사장님 30분 인터뷰 1회. 운영 매뉴얼은 우리가 받아 적습니다.' },
-    { range: 'Day 4–7', title: '직원 계정 발급 & 사진 체크리스트 가동', body: '아침/마감 루틴이 즉시 가동됩니다.' },
-    { range: 'Week 2', title: '임박 식자재 & 수동 정산 정착', body: '주방·홀이 입력을 손에 익히는 기간.' },
-    { range: 'Week 3', title: 'AI 운영 비서 가동', body: '매장 SOP 학습이 끝나는 시점부터 자동 응답·자동 푸시가 시작됩니다.' },
+    {
+      range: 'Week 1–3',
+      title: '요구사항 정의 & 설계',
+      body: '사장님 인터뷰 2~3회로 매장 SOP·메뉴·직원 명단·운영 흐름을 받아 적습니다. UX 와이어프레임과 데이터 모델을 사장님과 함께 확정합니다.',
+    },
+    {
+      range: 'Week 4–8',
+      title: '시스템 개발',
+      body: '백엔드·모바일 앱·사장님 대시보드·AI 운영 비서를 매장에 맞춰 구축합니다. 주 1회 진행상황을 데모로 보여드리며 방향을 조정합니다.',
+    },
+    {
+      range: 'Week 9–10',
+      title: '파일럿 테스트',
+      body: '실제 매장 일부 영역(예: 마감 체크리스트, 한 시프트)에서 시범 운영합니다. 직원 사용성을 점검하고 매장 데이터로 AI를 보정합니다.',
+    },
+    {
+      range: 'Week 11–12',
+      title: '본격 가동 & 안정화',
+      body: '전 직원 온보딩, 모든 기능 활성화. 일일 모니터링과 사장님 정기 리포트가 자리 잡으면 인수인계 완료입니다.',
+    },
   ],
 };
 
@@ -251,10 +267,6 @@ export const faq = {
     {
       q: 'AI가 잘못된 푸시를 보내면요?',
       a: 'AI의 모든 행동은 AgentDirective 감사 로그에 "왜 보냈는지"가 기록됩니다. 사장님이 사후 검토 가능하고, 자동 푸시 권한은 매장 단위로 ON/OFF 할 수 있습니다.',
-    },
-    {
-      q: '도중에 해지 가능한가요?',
-      a: '월 단위 해지 가능. 도입 30일 안에 효과를 못 보시면 사용료 전액 환불해 드립니다.',
     },
     {
       q: '우리 매장만의 특별한 SOP가 있는데, AI가 이해할까요?',

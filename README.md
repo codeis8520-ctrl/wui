@@ -46,7 +46,7 @@ vercel --prod
 4. AgentChat — 실시간 타이핑 데모
 5. Impact — 도입 효과 수치 (count-up)
 6. Screens — 4컷 화면 미리보기
-7. Process — 3주 도입 일정
+7. Process — 12주 단계별 도입 일정 (설계 → 개발 → 파일럿 → 본격 가동)
 8. **Pricing — 본 페이지 KPI 지점**
 9. Trust — 데이터/보안
 10. FAQ — 6개 아코디언
