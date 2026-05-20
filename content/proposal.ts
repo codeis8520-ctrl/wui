@@ -287,16 +287,18 @@ export const faq = {
 
 export const finalCta = {
   title: `${client.contactPerson}, 이 제안에 관심 있으시면 알려주세요.`,
-  sub: `${client.name} 매장에 맞춰 새로 개발하는 프로젝트입니다. 식자재 폐기 절감과 마감 사고 감소, 신규 직원 교육 시간 절감만 합쳐도 도입비를 2~3년 안에 회수합니다. 게다가 한번 만들어둔 시스템은 2호점·3호점이 늘어도 그대로 복제됩니다. 의사를 남겨주시면 다음 미팅에서 개발 범위와 견적을 함께 정리해 가져가겠습니다.`,
-  primaryLabel: '도입 문의 남기기',
-  secondaryLabel: '30분 미팅 잡기',
+  sub: `${client.name} 매장에 맞춰 새로 개발하는 프로젝트입니다. 식자재 폐기 절감과 마감 사고 감소, 신규 직원 교육 시간 절감만 합쳐도 도입비를 2~3년 안에 회수합니다. 게다가 한번 만들어둔 시스템은 2호점·3호점이 늘어도 그대로 복제됩니다. 자세한 개발 범위와 견적은 아래 연락처로 문의 주시면 미팅에서 함께 정리해 드리겠습니다.`,
+};
+
+export const developer = {
+  company: '제이엘컴퍼니',
+  ceoLabel: '대표',
+  ceoName: '이종림',
 };
 
 export const footer = {
-  company: '주식회사 Owners (가칭)',
-  bizNo: '000-00-00000',
-  contactName: '담당자: ___',
-  email: 'hello@owners.kr',
-  phone: '010-0000-0000',
+  company: '제이엘컴퍼니',
+  ceoLabel: '대표',
+  ceoName: '이종림',
   copyrightYear: 2026,
 };
