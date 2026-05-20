@@ -6,7 +6,7 @@ const links = [
   { href: '#problems', label: '문제' },
   { href: '#features', label: '솔루션' },
   { href: '#agent', label: 'AI 비서' },
-  { href: '#pricing', label: '단가' },
+  { href: '#process', label: '도입 절차' },
   { href: '#faq', label: 'FAQ' },
 ];
 
@@ -41,10 +41,10 @@ export default function Nav() {
           ))}
         </nav>
         <a
-          href="#pricing"
+          href="#cta"
           className="inline-flex items-center gap-1.5 bg-brand-700 hover:bg-brand-800 text-white text-sm font-semibold px-4 py-2 rounded-lg transition"
         >
-          제안 단가 확인
+          도입 문의
           <span aria-hidden>→</span>
         </a>
       </div>

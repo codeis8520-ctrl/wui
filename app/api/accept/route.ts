@@ -17,11 +17,10 @@ export async function POST(req: NextRequest) {
   if (!ok.valid) return NextResponse.json({ error: 'validation', detail: ok.detail }, { status: 400 });
 
   const lines = [
-    `📩 *제안 수락 의사 접수*`,
+    `📩 *도입 문의 접수*`,
     `매장: ${body.storeName}`,
     `사장님: ${body.contactName}`,
     `연락처: ${body.phone}`,
-    `선택 플랜: ${body.tier}`,
     body.memo ? `메모: ${body.memo}` : null,
     `시각: ${new Date().toISOString()}`,
   ].filter(Boolean);
@@ -54,7 +53,7 @@ export async function POST(req: NextRequest) {
         body: JSON.stringify({
           from,
           to,
-          subject: `[Owners] ${body.storeName} 제안 수락 의사 접수`,
+          subject: `[Owners] ${body.storeName} 도입 문의 접수`,
           text,
         }),
       })
@@ -79,7 +78,6 @@ interface AcceptBody {
   storeName?: string;
   contactName?: string;
   phone?: string;
-  tier?: string;
   memo?: string;
 }
 
@@ -87,7 +85,6 @@ function validate(b: AcceptBody): { valid: boolean; detail?: string } {
   if (!b.storeName || b.storeName.length < 1) return { valid: false, detail: 'storeName required' };
   if (!b.contactName || b.contactName.length < 1) return { valid: false, detail: 'contactName required' };
   if (!b.phone || b.phone.length < 7) return { valid: false, detail: 'phone required' };
-  if (!b.tier) return { valid: false, detail: 'tier required' };
   if (b.memo && b.memo.length > 1000) return { valid: false, detail: 'memo too long' };
   return { valid: true };
 }

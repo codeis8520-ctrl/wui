@@ -6,8 +6,8 @@ import AgentChat from '@/components/AgentChat';
 import Impact from '@/components/Impact';
 import Screens from '@/components/Screens';
 import Process from '@/components/Process';
-import Pricing from '@/components/Pricing';
 import Trust from '@/components/Trust';
+// import Pricing from '@/components/Pricing'; // 월 구독 전환 시점에 재활성
 import FAQ from '@/components/FAQ';
 import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
@@ -28,7 +28,7 @@ export default function Page() {
       <Impact />
       <Screens />
       <Process />
-      <Pricing />
+      {/* <Pricing /> — 월 구독 단가는 본 제안 단계에서 노출하지 않음 */}
       <Trust />
       <FAQ />
       <FinalCTA />

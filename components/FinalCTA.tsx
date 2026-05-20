@@ -1,13 +1,12 @@
 'use client';
 import { useState } from 'react';
-import { finalCta, pricing, client } from '@/content/proposal';
+import { finalCta, client } from '@/content/proposal';
 import { Check, Loader2 } from 'lucide-react';
 
 type Status = 'idle' | 'submitting' | 'ok' | 'error';
 
 export default function FinalCTA() {
   const [status, setStatus] = useState<Status>('idle');
-  const [tier, setTier] = useState<string>('pro');
   const [storeName, setStoreName] = useState<string>(client.name);
   const [contactName, setContactName] = useState('');
   const [phone, setPhone] = useState('');
@@ -22,7 +21,7 @@ export default function FinalCTA() {
       const res = await fetch('/api/accept', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ tier, storeName, contactName, phone, memo }),
+        body: JSON.stringify({ storeName, contactName, phone, memo }),
       });
       if (!res.ok) throw new Error(await res.text());
       setStatus('ok');
@@ -51,7 +50,7 @@ export default function FinalCTA() {
             <p className="mt-3 text-ink-700 leading-relaxed">
               담당자가 영업일 기준 1일 안에 연락드리겠습니다.
               <br />
-              다음 미팅에서 확정 단가와 계약서를 가져갑니다.
+              다음 미팅에서 개발 범위와 견적을 함께 정리해 가져가겠습니다.
             </p>
           </div>
         ) : (
@@ -76,30 +75,18 @@ export default function FinalCTA() {
                   required
                 />
               </Field>
-              <Field label="연락처" required>
-                <input
-                  className="input"
-                  type="tel"
-                  placeholder="010-1234-5678"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  required
-                />
-              </Field>
-              <Field label="선택 플랜">
-                <select
-                  className="input"
-                  value={tier}
-                  onChange={(e) => setTier(e.target.value)}
-                >
-                  {pricing.tiers.map((t) => (
-                    <option key={t.id} value={t.id}>
-                      {t.name}
-                      {t.badge ? ` (${t.badge})` : ''}
-                    </option>
-                  ))}
-                </select>
-              </Field>
+              <div className="sm:col-span-2">
+                <Field label="연락처" required>
+                  <input
+                    className="input"
+                    type="tel"
+                    placeholder="010-1234-5678"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    required
+                  />
+                </Field>
+              </div>
             </div>
             <Field label="전달 사항 (선택)">
               <textarea

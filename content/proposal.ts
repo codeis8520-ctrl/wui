@@ -21,8 +21,10 @@ export type Tier = {
 export const brand = {
   name: 'Owners',
   tagline: '사장님을 위한 매장 운영 OS',
-  // 단가가 확정되면 아래 banner 문구를 지우거나 'v1.0'으로 변경.
-  proposalBanner: '본 페이지는 협의 단계의 제안 버전입니다 · 단가는 협의 진행 중',
+  proposalBanner: '본 페이지는 웨이 티하우스 앤 레스토랑 도입 검토용 제안서입니다 · v0.1',
+  // 월 구독 단가 섹션 노출 여부. 본 제안은 개발 견적 베이스이므로 false.
+  // SaaS 전환 시점에 true로 바꾸면 Pricing 섹션이 다시 노출됩니다.
+  showPricing: false,
 };
 
 export const client = {
@@ -39,7 +41,7 @@ export const hero = {
   h1Bottom: '시스템이 대신합니다.',
   sub: '식자재 폐기 · 마감 누락 · 흐지부지된 회의 결정 — 매장이 사장님 없이도 매뉴얼대로 굴러가게.',
   personaLine: client.personaHook,
-  primaryCta: { label: '제안 단가 확인', target: '#pricing' },
+  primaryCta: { label: '제안 내용 보기', target: '#features' },
   secondaryCta: { label: '데모 화면 보기', target: '#screens' },
   badges: ['매장별 데이터 격리', 'POS 연동 불필요', '3주 안에 자리잡음'],
 };
@@ -262,9 +264,9 @@ export const faq = {
 };
 
 export const finalCta = {
-  title: `${client.contactPerson}, 이 제안을 수락하시겠습니까?`,
-  sub: '단가가 미확정인 단계입니다. 우선 의사만 남겨주시면 다음 미팅에서 확정 단가와 함께 계약서를 가져갑니다.',
-  primaryLabel: '단가 수락하고 시작하기',
+  title: `${client.contactPerson}, 이 제안에 관심 있으시면 알려주세요.`,
+  sub: '본 제안은 ' + client.name + ' 매장에 맞춘 개발 프로젝트입니다. 의사를 남겨주시면 다음 미팅에서 개발 범위와 견적을 함께 정리해 가져가겠습니다.',
+  primaryLabel: '도입 문의 남기기',
   secondaryLabel: '30분 미팅 잡기',
 };
 
