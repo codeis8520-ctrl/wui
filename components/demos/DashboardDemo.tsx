@@ -38,10 +38,10 @@ const DATA: Record<Period, { label: string; revenue: number; cost: number; days:
 };
 
 const MENU_MIX = [
-  { name: '닭볶음탕', share: 28, color: 'bg-brand-600' },
-  { name: '시그니처 티 세트', share: 22, color: 'bg-amber-500' },
-  { name: '연잎밥 정식', share: 18, color: 'bg-rose-500' },
-  { name: '오미자차', share: 14, color: 'bg-indigo-500' },
+  { name: '시그니처 메뉴', share: 28, color: 'bg-brand-600' },
+  { name: '메인 정식', share: 22, color: 'bg-amber-500' },
+  { name: '추천 세트', share: 18, color: 'bg-rose-500' },
+  { name: '음료', share: 14, color: 'bg-indigo-500' },
   { name: '기타', share: 18, color: 'bg-ink-300' },
 ];
 
@@ -57,7 +57,7 @@ export default function DashboardDemo() {
     <div className="flex flex-col h-full bg-ink-50">
       {/* 헤더 */}
       <div className="px-5 pt-4 pb-3 bg-white border-b border-ink-100 sticky top-0 z-10">
-        <p className="text-[11px] text-ink-500 font-semibold">사장님 · 웨이 티하우스</p>
+        <p className="text-[11px] text-ink-500 font-semibold">사장님 대시보드</p>
         <h1 className="text-lg font-black text-ink-900 mt-0.5">매출 대시보드</h1>
 
         {/* 기간 토글 */}

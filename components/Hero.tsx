@@ -1,4 +1,4 @@
-import { hero, client } from '@/content/proposal';
+import { hero } from '@/content/proposal';
 import { CheckCircle2 } from 'lucide-react';
 
 export default function Hero() {
@@ -19,10 +19,7 @@ export default function Hero() {
             </h1>
             <p className="mt-6 text-lg md:text-xl text-ink-700 leading-relaxed">{hero.sub}</p>
             <div className="mt-6 p-4 rounded-xl bg-white border border-brand-100 shadow-sm">
-              <p className="text-[15px] text-ink-700">
-                <span className="font-bold text-ink-900">{client.shortName}</span> 사장님께,{' '}
-                {hero.personaLine}
-              </p>
+              <p className="text-[15px] text-ink-700">{hero.personaLine}</p>
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
@@ -106,8 +103,8 @@ function PhoneStack() {
       >
         <div className="mt-3 p-3 rounded-xl bg-gradient-to-br from-amber-50 to-amber-100 border border-amber-200">
           <p className="text-[11px] font-bold text-amber-700">임박 식자재 소진 추천</p>
-          <p className="text-[14px] font-bold text-ink-900 mt-1">닭볶음탕</p>
-          <p className="text-[11px] text-ink-700 mt-1">닭다리살 200g · D-1</p>
+          <p className="text-[14px] font-bold text-ink-900 mt-1">오늘의 추천 메뉴</p>
+          <p className="text-[11px] text-ink-700 mt-1">임박 재고 · D-1</p>
           <div className="mt-2 flex items-center justify-between">
             <span className="text-[11px] text-amber-700">판매당 +100p</span>
             <button className="text-[11px] bg-brand-700 text-white px-2 py-1 rounded">
@@ -130,7 +127,7 @@ function PhoneStack() {
           </div>
           <div className="flex justify-start">
             <div className="bg-ink-100 text-ink-900 text-[11px] px-2.5 py-1.5 rounded-lg max-w-[85%]">
-              박서연·김민준 미완료. 두 분께 푸시 보냈습니다.
+              홀 1명·주방 1명 미완료. 두 분께 푸시 보냈습니다.
             </div>
           </div>
         </div>

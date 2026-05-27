@@ -15,10 +15,10 @@ type Task = { id: string; title: string; shift: '출근' | '미드' | '마감'; 
 type State = 'pending' | 'photo-taken' | 'done';
 
 const INITIAL_TASKS: Task[] = [
-  { id: 't1', title: '홀 바닥 청소 및 사진 인증', shift: '마감', assignee: '박서연' },
-  { id: 't2', title: '냉장고 온도 확인 (영하 18도 이하)', shift: '마감', assignee: '김민준' },
-  { id: 't3', title: '주방 후드·가스레인지 청소', shift: '마감', assignee: '김민준' },
-  { id: 't4', title: '컵·식기 정리 및 위생 점검', shift: '마감', assignee: '박서연' },
+  { id: 't1', title: '홀 바닥 청소 및 사진 인증', shift: '마감', assignee: '민지' },
+  { id: 't2', title: '냉장고 온도 확인 (영하 18도 이하)', shift: '마감', assignee: '준호' },
+  { id: 't3', title: '주방 후드·가스레인지 청소', shift: '마감', assignee: '준호' },
+  { id: 't4', title: '컵·식기 정리 및 위생 점검', shift: '마감', assignee: '민지' },
   { id: 't5', title: '마감 정산 (POS 또는 엑셀 입력)', shift: '마감', assignee: '이준호' },
 ];
 
