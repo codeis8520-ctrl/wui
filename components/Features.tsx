@@ -7,6 +7,7 @@ import {
   Sparkles,
   GraduationCap,
   FileSpreadsheet,
+  Timer,
   type LucideIcon,
 } from 'lucide-react';
 import { SectionHeader } from './Problems';
@@ -19,6 +20,7 @@ const ICONS: Record<string, LucideIcon> = {
   Sparkles,
   GraduationCap,
   FileSpreadsheet,
+  Timer,
 };
 
 export default function Features() {
