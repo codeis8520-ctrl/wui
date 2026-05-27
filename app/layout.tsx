@@ -1,16 +1,17 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { brand, client } from '@/content/proposal';
+import { brand } from '@/content/proposal';
 
 export const metadata: Metadata = {
-  title: `${brand.name} 운영 제안 · ${client.name}`,
-  description: brand.tagline,
+  title: `${brand.name} — 외식업 매장 운영 OS`,
+  description:
+    '사진 인증 체크리스트 · 임박 식자재 자동 추천 · 시급/주휴 자동계산 · AI 운영 비서. 한국 외식업 사장님을 위한 통합 운영 OS.',
   openGraph: {
-    title: `${client.name} 운영 제안서`,
+    title: `${brand.name} — 외식업 매장 운영 OS`,
     description: '사장님의 구두 지시를 시스템이 대신합니다.',
     type: 'website',
   },
-  robots: { index: false, follow: false }, // 제안용 — 검색 노출 차단
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

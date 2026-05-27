@@ -1,54 +1,60 @@
-# Owners 운영 제안 랜딩페이지
+# Owners — 외식업 매장 운영 OS (랜딩 페이지)
 
-웨이 티하우스 앤 레스토랑 사장님 검토용. 단가 협의 단계 v0.1.
+한국 외식업 사장님을 위한 매장 운영 OS의 마케팅·구독 랜딩 페이지.
+구독제 v1.0(2026-05 시장조사 기반 단가). Vercel 호스팅, Next.js App Router.
 
 ## 로컬 실행
 
 ```bash
-cd landing
 npm install
 npm run dev   # http://localhost:3000
 ```
 
+## 페이지
+
+- `/` — 단일 매장 셀프 가입 (Starter ₩69k / Pro ₩129k / AI Plus ₩229k)
+- `/franchise` — 가맹점 5~50개 본부 트랙 (HQ 라이선스 ₩790k + 매장당 ₩79k)
+- `/proposals/[client]` — 특정 고객사용 영업 미팅 변형 페이지
+
 ## 단가/문구 수정
 
-모든 카피·단가·FAQ·연락처는 `content/proposal.ts` 한 파일에 모여 있습니다.
-- 단가가 확정되면 `pricing.tiers[*].monthly` 와 `pricing.pricesPending: false`로 변경
-- 클라이언트사명·페르소나는 `client` 객체 수정
+모든 카피·단가·FAQ는 `content/proposal.ts` 한 파일에 모여 있습니다.
+- 셀프 가입 단가: `pricing.tiers`
+- 본부 트랙: `franchisePricing` (HQ + perStore)
+- 페르소나·문구는 `hero`, `problems`, `features`, `process`, `finalCta` 등
+
+## 디자인
+
+- Tailwind CSS v3
+- 컬러: brand(주황) + ink(텍스트 그레이스케일) + amber/rose 강조
+- 컴포넌트: `components/` 단일 매장용, `app/franchise/page.tsx` 본부용 (독립)
 
 ## Vercel 배포
 
-1. https://vercel.com → New Project → 이 디렉터리(`landing`)를 Root로 import
-2. (선택) 환경변수 등록:
-   - `SLACK_WEBHOOK_URL` — 제안 수락 폼 제출 시 슬랙 알림
-   - `RESEND_API_KEY` + `NOTIFY_EMAIL_TO` + `NOTIFY_EMAIL_FROM` — 이메일 알림
-   - 둘 다 비워두면 Vercel Functions 로그에만 남습니다 (시연용으로 안전)
-3. Deploy → `https://owners-proposal.vercel.app` 같은 URL 발급
-4. 사장님께 공유
+`vercel.json`이 framework: nextjs로 고정. main에 push 시 자동 배포.
+PR 푸시 시 preview 배포 자동 생성.
 
-또는 CLI로:
+## 백엔드
 
-```bash
-npm i -g vercel
-vercel --prod
-```
+랜딩은 정적·콘텐츠 페이지로만 동작. 회원가입·결제·실제 운영 데이터는
+[`codeis8520-ctrl/franchise-os`](https://github.com/codeis8520-ctrl/franchise-os) 백엔드에서 처리.
 
-## 다른 고객사 변형 페이지
+## 페이지 섹션 구조 (기본 페이지)
 
-`/proposals/[client]` 라우트로 동일 골격에 회사명만 갈아끼울 수 있습니다.
-현재는 `way` 슬러그가 기본 페이지를 재사용합니다.
-
-## 페이지 섹션 구조
-
-1. Hero — 사장님 페르소나 카피
+1. Hero — 외식업 사장 페르소나
 2. Problems — 4가지 페인 포인트
-3. Features — 5가지 기능 (AI는 강조 카드)
-4. AgentChat — 실시간 타이핑 데모
-5. Impact — 도입 효과 수치 (count-up)
-6. Screens — 4컷 화면 미리보기
-7. Process — 12주 단계별 도입 일정 (설계 → 개발 → 파일럿 → 본격 가동)
-8. **Pricing — 본 페이지 KPI 지점**
-9. Trust — 데이터/보안
-10. FAQ — 6개 아코디언
-11. Final CTA — 수락 폼
-12. Footer
+3. Features — 8가지 기능 (AI 비서 + 시급/주휴 자동계산 강조)
+4. AgentChat — AI 비서 실시간 데모
+5. AgentEvolution — 1/3/6/12개월차 AI 성숙도
+6. Impact — 도입 효과 수치
+7. Screens — 4컷 모바일 화면 미리보기 (체크리스트·홀배너·대시보드·온보딩)
+8. Process — 2주 도입 일정
+9. **Pricing — 구독제 3티어**
+10. Trust — 데이터/보안
+11. FAQ
+12. Final CTA — 지금 구독 시작
+13. Footer
+
+## 회사
+
+제이엘컴퍼니 · 이종림 대표 · 010-9958-8520

@@ -15,7 +15,7 @@ const INITIAL_QTY = 1.6; // kg
 
 export default function HallBannerDemo() {
   const [remaining, setRemaining] = useState(INITIAL_QTY);
-  const [points, setPoints] = useState(2350); // 박서연의 기존 누적 포인트
+  const [points, setPoints] = useState(2350); // 시연용 홀 직원 누적 포인트
   const [floatPoints, setFloatPoints] = useState<number | null>(null);
   const [view, setView] = useState<'home' | 'sale'>('home');
   const [saleQty, setSaleQty] = useState(0.2); // kg per dish
@@ -57,7 +57,7 @@ export default function HallBannerDemo() {
       <div className="px-5 pt-4 pb-3 bg-white border-b border-ink-100 sticky top-0 z-10">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-[11px] text-ink-500 font-semibold">홀 직원 · 박서연</p>
+            <p className="text-[11px] text-ink-500 font-semibold">홀 직원 · 민지</p>
             <h1 className="text-lg font-black text-ink-900 mt-0.5">오늘의 매장</h1>
           </div>
           <div className="text-right">
@@ -87,10 +87,10 @@ export default function HallBannerDemo() {
                 <Sparkles className="w-3 h-3" />
                 AI 추천 · 임박 식자재 소진
               </p>
-              <p className="text-xl font-black text-ink-900 mt-1.5">닭볶음탕</p>
+              <p className="text-xl font-black text-ink-900 mt-1.5">추천 메뉴</p>
               <div className="mt-2 flex items-center gap-3 text-[11px]">
                 <span className="px-2 py-0.5 rounded-full bg-white/70 text-ink-700 font-semibold">
-                  닭다리살
+                  임박 재료
                 </span>
                 <span className="text-ink-700">
                   잔여 <span className="font-black">{remaining.toFixed(1)}kg</span>
@@ -113,10 +113,10 @@ export default function HallBannerDemo() {
         <h3 className="text-xs font-bold text-ink-500 tracking-wide mb-2">오늘 주문 현황</h3>
         <div className="space-y-1.5">
           {[
-            { table: 'T3', menu: '닭볶음탕', recent: recentSales >= 1 },
-            { table: 'T7', menu: '닭볶음탕', recent: recentSales >= 2 },
+            { table: 'T3', menu: '추천 메뉴', recent: recentSales >= 1 },
+            { table: 'T7', menu: '추천 메뉴', recent: recentSales >= 2 },
             { table: 'T2', menu: '김치찌개', recent: false },
-            { table: 'T5', menu: '닭볶음탕', recent: recentSales >= 3 },
+            { table: 'T5', menu: '추천 메뉴', recent: recentSales >= 3 },
           ].map((o, i) => (
             <div
               key={i}
@@ -172,8 +172,8 @@ function SaleScreen({
       </div>
 
       <div className="flex-1 p-5">
-        <h2 className="text-lg font-black text-ink-900">닭볶음탕 판매 등록</h2>
-        <p className="text-[12px] text-ink-500 mt-1">사용한 닭다리살 양을 입력하세요</p>
+        <h2 className="text-lg font-black text-ink-900">추천 메뉴 판매 등록</h2>
+        <p className="text-[12px] text-ink-500 mt-1">사용한 임박 재료 양을 입력하세요</p>
 
         <div className="mt-6 flex items-center justify-center gap-4">
           <button
